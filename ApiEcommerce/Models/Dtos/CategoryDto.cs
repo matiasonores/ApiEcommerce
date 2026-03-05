@@ -1,3 +1,5 @@
+using System;
+
 public class CategoryDto
 {
     public int Id {get;set;}

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public interface ICategoryRepository
 {
     ICollection<Category> GetCategories();
