@@ -1,4 +1,8 @@
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 public class CategoryRepository : ICategoryRepository
 {
     private readonly ApplicationDbContext _db;
