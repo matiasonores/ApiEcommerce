@@ -46,7 +46,7 @@ public class CategoryRepository : ICategoryRepository
 
     public bool UpdateCategory(Category category)
     {
-         category.CreationDate = DateTime.Now;
+        category.CreationDate = DateTime.Now;
         _db.Categories.Update(category);
         return Save();
     }
