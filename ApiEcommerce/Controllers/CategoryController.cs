@@ -68,11 +68,39 @@ namespace ApiEcommerce.Controllers
             var category = _mapper.Map<Category>(createCategoryDto);
             if (!_categoryRepository.CreateCategory(category))
             {
-                ModelState.AddModelError("CustomError","Something went wrong creating the register");
+                ModelState.AddModelError("CustomError","Something went wrong creating the register!");
                 return StatusCode(500,ModelState);
             }
 
             return CreatedAtRoute("GetCategory", new { id = category.Id}, category);
+        }
+        [HttpPatch("{id:int}", Name = "UpdateCategory")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdateCategory(int id, [FromBody]CreateCategoryDto updateCategoryDto)
+        {
+            if (!_categoryRepository.CategoryExists(id))
+            {
+                return NotFound($"Category with id {id} was not found!");
+            }
+            if (_categoryRepository.CategoryExists(updateCategoryDto.Name))
+            {
+                ModelState.AddModelError("CustomError","Category already exists!");
+                return BadRequest(ModelState);
+            }
+
+            var category = _mapper.Map<Category>(updateCategoryDto);
+            category.Id = id;
+            if (!_categoryRepository.UpdateCategory(category))
+            {
+                ModelState.AddModelError("CustomError","Something went wrong updating the register!");
+                return StatusCode(500,ModelState);
+            }
+
+            return NoContent();
         }
     }
 }
