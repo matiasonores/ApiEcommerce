@@ -26,7 +26,7 @@ namespace ApiEcommerce.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetCategories()
+        public IActionResult GetProducts()
         {
             var products = _productRepository.GetProducts();
             var productDto = _mapper.Map<List<ProductDto>>(products);
