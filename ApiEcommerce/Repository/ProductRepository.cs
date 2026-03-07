@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ApiEcommerce.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiEcommerce.Repository;

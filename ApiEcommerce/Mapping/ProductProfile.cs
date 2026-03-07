@@ -1,3 +1,4 @@
+using ApiEcommerce.Models;
 using AutoMapper;
 
 public class ProductProfile : Profile

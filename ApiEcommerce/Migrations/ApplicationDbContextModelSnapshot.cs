@@ -21,7 +21,7 @@ namespace ApiEcommerce.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Category", b =>
+            modelBuilder.Entity("ApiEcommerce.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace ApiEcommerce.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Product", b =>
+            modelBuilder.Entity("ApiEcommerce.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -87,9 +87,34 @@ namespace ApiEcommerce.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Product", b =>
+            modelBuilder.Entity("ApiEcommerce.Models.User", b =>
                 {
-                    b.HasOne("Category", "Category")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pâssword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ApiEcommerce.Models.Product", b =>
+                {
+                    b.HasOne("ApiEcommerce.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

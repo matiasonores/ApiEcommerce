@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ApiEcommerce.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
