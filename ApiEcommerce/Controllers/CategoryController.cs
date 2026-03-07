@@ -24,10 +24,10 @@ namespace ApiEcommerce.Controllers
         {
             var categories = _categoryRepository.GetCategories();
             var categoriesDto = new List<CategoryDto>();
-            foreach(var category in categories)
+            foreach (var category in categories)
             {
                 categoriesDto.Add(_mapper.Map<CategoryDto>(category));
-            } 
+            }
 
             return Ok(categoriesDto);
         }
@@ -39,7 +39,7 @@ namespace ApiEcommerce.Controllers
         public IActionResult GetCategory(int id)
         {
             var category = _categoryRepository.GetCategory(id);
-            if(category == null)
+            if (category == null)
             {
                 return NotFound($"Category with id {id} was not found!");
             }
@@ -54,25 +54,25 @@ namespace ApiEcommerce.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateCategory([FromBody]CreateCategoryDto createCategoryDto)
+        public IActionResult CreateCategory([FromBody] CreateCategoryDto createCategoryDto)
         {
-            if(createCategoryDto == null)
+            if (createCategoryDto == null)
             {
                 return BadRequest();
             }
             if (_categoryRepository.CategoryExists(createCategoryDto.Name))
             {
-                ModelState.AddModelError("CustomError","Category already exists!");
+                ModelState.AddModelError("CustomError", "Category already exists!");
                 return BadRequest(ModelState);
             }
             var category = _mapper.Map<Category>(createCategoryDto);
             if (!_categoryRepository.CreateCategory(category))
             {
-                ModelState.AddModelError("CustomError","Something went wrong creating the register!");
-                return StatusCode(500,ModelState);
+                ModelState.AddModelError("CustomError", "Something went wrong creating the register!");
+                return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetCategory", new { id = category.Id}, category);
+            return CreatedAtRoute("GetCategory", new { id = category.Id }, category);
         }
         [HttpPatch("{id:int}", Name = "UpdateCategory")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -80,7 +80,7 @@ namespace ApiEcommerce.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateCategory(int id, [FromBody]CreateCategoryDto updateCategoryDto)
+        public IActionResult UpdateCategory(int id, [FromBody] CreateCategoryDto updateCategoryDto)
         {
             if (!_categoryRepository.CategoryExists(id))
             {
@@ -88,7 +88,7 @@ namespace ApiEcommerce.Controllers
             }
             if (_categoryRepository.CategoryExists(updateCategoryDto.Name))
             {
-                ModelState.AddModelError("CustomError","Category already exists!");
+                ModelState.AddModelError("CustomError", "Category already exists!");
                 return BadRequest(ModelState);
             }
 
@@ -96,8 +96,34 @@ namespace ApiEcommerce.Controllers
             category.Id = id;
             if (!_categoryRepository.UpdateCategory(category))
             {
-                ModelState.AddModelError("CustomError","Something went wrong updating the register!");
-                return StatusCode(500,ModelState);
+                ModelState.AddModelError("CustomError", "Something went wrong updating the register!");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+        [HttpDelete("{id:int}", Name = "DeleteCategory")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult DeleteCategory(int id)
+        {
+            if (!_categoryRepository.CategoryExists(id))
+            {
+                return NotFound($"Category with id {id} was not found!");
+            }
+
+            var category = _categoryRepository.GetCategory(id);
+            if (category == null)
+            {
+                return NotFound($"Category with id {id} was not found!");
+            }
+            if (!_categoryRepository.DeleteCategory(category))
+            {
+                ModelState.AddModelError("CustomError", "Something went wrong deleting the register!");
+                return StatusCode(500, ModelState);
             }
 
             return NoContent();
