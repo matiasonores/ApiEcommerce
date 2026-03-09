@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using ApiEcommerce.Constants;
 using ApiEcommerce.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +10,7 @@ namespace ApiEcommerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors(PolicyNames.AllowSpecificOrigin)]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
