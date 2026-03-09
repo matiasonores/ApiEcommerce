@@ -1,0 +1,234 @@
+{
+  "info": {
+    "_postman_id": "718253e9-d1b6-40e8-9f4e-29b1a4e45458",
+    "name": "Api Ecommerce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30054810"
+  },
+  "item": [
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5148/api/Category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "Category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5148/api/Category/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "Category",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluLW1hdGlhcyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc3MzA1NjY1MCwiZXhwIjoxNzczMDYzODUwLCJpYXQiOjE3NzMwNTY2NTB9.8iC-RQ_48gTGeJ5brn7l8AsbyaDGPwVQ-I8soKNab_o",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\" : \"Tecnologia\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5148/api/Category",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "Category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluLW1hdGlhcyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc3MzA1NjY1MCwiZXhwIjoxNzczMDYzODUwLCJpYXQiOjE3NzMwNTY2NTB9.8iC-RQ_48gTGeJ5brn7l8AsbyaDGPwVQ-I8soKNab_o",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5148/api/Category/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "Category",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJ1c2VybmFtZSI6ImFkbWluLW1hdGlhcyIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc3MzA1NjY1MCwiZXhwIjoxNzczMDYzODUwLCJpYXQiOjE3NzMwNTY2NTB9.8iC-RQ_48gTGeJ5brn7l8AsbyaDGPwVQ-I8soKNab_o",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Tecnologias\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5148/api/Category/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "Category",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "item": []
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"admin-matias\",\r\n    \"name\": \"Matias\",\r\n    \"password\": \"admin\",\r\n    \"role\": \"Admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5148/api/User",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "User"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"admin-matias\",\r\n    \"password\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5148/api/User/Login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5148",
+              "path": [
+                "api",
+                "User",
+                "Login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
